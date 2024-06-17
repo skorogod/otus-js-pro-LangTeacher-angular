@@ -1,0 +1,9 @@
+<form [formGroup]="wordForm" (ngSubmit)="onSubmit(wordForm)" class="col align-items-center w-50 p-3 m-auto">
+    <div class="mb-3">
+        <label for="word" class="form-label">New word</label>
+        <input formControlName="word" id="word"  class="form-control" type="text" placeholder="Enter new word" aria-label="Enter new word">
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
