@@ -1,0 +1,13 @@
+<form [formGroup]="goForm" (ngSubmit)="onSubmit(goForm)" class="col align-items-center">
+    <div class="mb-3">
+        <p>Translate this word: {{currentWord?.word}}</p>
+    </div>
+    <div class="mb-3">
+        <label for="translation" class="form-label">Translation</label>
+        <input class="form-control" formControlName="translation" id="translation" type="text">
+    </div>
+    <div class="col">
+        <button type="submit" class="btn btn-primary me-3">Submit</button>
+        <button type="button" (click)="onStop()" class="btn btn-danger">Stop</button>
+    </div>
+</form>

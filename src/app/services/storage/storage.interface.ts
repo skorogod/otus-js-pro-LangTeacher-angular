@@ -1,11 +1,16 @@
 export type Language = 'RU' | "EN"
   
   export type Storage = {
+    results: {
+        success: number,
+        mistakes: number,
+        total: number
+    }
     settings: {
-      fromLanguage: Language | null,
-      toLanguages: Language | null,
-      wordsCount: number | null
-      time: number | null
+      fromLanguage: Language,
+      toLanguage: Language,
+      wordsCount: number
+      time: number
     },
     words: WordItem[]
   }

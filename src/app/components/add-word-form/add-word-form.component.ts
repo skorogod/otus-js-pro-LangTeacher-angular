@@ -10,13 +10,13 @@ import { AddWordService } from '../../services/add-word/add-word.service';
   styleUrl: './add-word-form.component.scss',
 })
 export class AddWordFormComponent {
-  wordForm = new FormGroup({
-    word: new FormControl(''),
-  });
-
   constructor(
     private readonly addWordService: AddWordService
   ){}
+
+  wordForm = new FormGroup({
+    word: new FormControl(''),
+  });
 
   @Output()
   submit: EventEmitter<string> = new EventEmitter()

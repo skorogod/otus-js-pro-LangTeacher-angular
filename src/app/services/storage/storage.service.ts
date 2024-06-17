@@ -13,11 +13,16 @@ export class StorageService {
 
   createStorage(): Storage {
     return {
+      results: {
+        success: 0,
+        mistakes: 0,
+        total: 0
+      },
       settings: {
         fromLanguage: "RU",
-        toLanguages: "EN",
+        toLanguage: "EN",
         wordsCount: 10,
-        time: 60000
+        time: 60
       },
       words: []
     }
@@ -37,23 +42,41 @@ export class StorageService {
       return storage.words
     }
     else {
-      return null
+      return []
     }
   }
 
-  getSettings(): Storage['settings'] | null {
+  getSettings(): Storage['settings'] {
     const storage = this.getStorage()
-    if (storage) {
+    if (storage && storage.settings) {
       return storage.settings
     }
     else {
-      return null
+      return ({
+        fromLanguage: "RU",
+        toLanguage: "EN",
+        wordsCount: 10,
+        time: 60
+      })
+    }
+  }
+
+  getResults(): Storage['results'] {
+    const storage = this.getStorage()
+    if (storage) {
+      return storage.results
+    }
+    else {
+      return ({
+        success: 0,
+        mistakes: 0,
+        total: 0
+      })
     }
   }
 
   addWord(word: string, translation: string) {
     let storage = this.getStorage()
-    console.log("STORAGE ", storage)
     if (storage) {
       storage.words.unshift({
         id: storage.words.length,
@@ -78,5 +101,16 @@ export class StorageService {
       word,
       translation
     })
+  }
+
+  setSettings(settings: Storage['settings']) {
+      let storage = this.getStorage()
+      if (storage) {
+        storage.settings = settings;
+      } else {
+        storage = this.createStorage()
+        storage.settings = settings
+      }
+      localStorage.setItem('langteach', JSON.stringify(storage))
   }
 }
