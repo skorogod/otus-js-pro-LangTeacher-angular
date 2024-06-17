@@ -1,0 +1,35 @@
+<div class="d-flex g-3">
+    <div class="w-50">
+        <h2>Last Result</h2>
+        <div class="container" *ngIf="lastResults.total!=null; else noResults">
+            <div class="row">
+                <p class="col-4">Total words:</p>
+                <p class="col">{{lastResults.total}}</p>
+            </div>
+            <div class="row">
+                <p class="col-4">Successful translated:</p>
+                <p class="col">{{lastResults.success}}</p>
+            </div>
+            <div class="row">
+                <p class="col-4">Mistakes</p>
+                <p class="col">{{lastResults.mistakes}}</p>
+            </div>
+        </div>
+        <ng-template #noResults>
+            <p>
+                No Results
+            </p>
+        </ng-template>
+        <button class="btn btn-success" (click)="onStart()" *ngIf="!isStarted">Start</button>
+    </div>
+    <div class="w-50" *ngIf="isStarted && words.length; else noWords">
+        <div *ngIf="isStarted" class="d-flex flex-row">
+            <p class="me-3">RemainingTime: </p>
+            <countdown (event)="onEvent($event)" #cd [config]="config"></countdown>
+        </div>
+        <app-go-form (translated)="onTranslated($event)" [currentWord]="currentWord" (stop)="onStop($event)"></app-go-form>
+    </div>
+    <ng-template  #noWords>
+        <p *ngIf="isStarted">NO WORDS</p>
+    </ng-template>
+</div>

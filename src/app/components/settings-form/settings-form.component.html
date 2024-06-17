@@ -1,0 +1,19 @@
+<form [formGroup]="settingsForm" (ngSubmit)="onSubmit(settingsForm)" class="col align-items-center w-50 p-3 m-auto">
+    <div class="mb-3">
+        <label for="language" class="form-label">Language</label>
+        <select class="form-control" formControlName="toLanguage"  name="language" id="language">
+            <option value='EN'>English</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="words-count" class="form-label">Words Count</label>
+        <input class="form-control" formControlName="wordsCount" id="words-count" type="text">
+    </div>
+    <div class="mb-3">
+        <label for="timer" class="form-label">Timer</label>
+        <input class="form-control" formControlName="time" id="time" type="text">
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
